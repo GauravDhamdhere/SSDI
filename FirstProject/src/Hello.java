@@ -37,14 +37,11 @@ public class Hello extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DBConnection db = new DBConnection();
-		String Id = request.getParameter("id");
 		String msg = null;
 		try {
-			//Class.forName("com.mysql.jdbc.Driver");
+			 
 			
-			//conn = DriverManager.getConnection("jdbc:mysql://localhost/sample","root","root");
-			
-			conn = db.getConnect();
+			conn = db.getConnect();			//DB Connection
 			st = conn.createStatement();
 			
 			rs = st.executeQuery("select * from student");
@@ -66,10 +63,6 @@ public class Hello extends HttpServlet {
 			db.closeConnect();
 		}
 		
-		
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		//ServletContext sc = getServletContext();
-		//sc.setAttribute("name1", Name);
 		request.setAttribute("message", msg);
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Results.jsp");
 		
